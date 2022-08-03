@@ -24,14 +24,23 @@
 # Cумма: 410
 
 class Item:
-    def __init__(self, title, price):
+    def __init__(self, title, price, unit, quantity):
         self.title = title
         self.price = price
+        self.unit = unit
+        self.quantity = quantity
+
+    def total_price(self):
+        return self.price * self.quantity
 
 
 class Cheque:
     def __init__(self):
         self.items = []
+
+    def add_item(self, title, price, unit, quantity):
+        item = Item(title=title, price=price, unit=unit, quantity=quantity)
+        return self.items.append(item)
 
     def purchases(self):
         return "\n".join([f"{item.title} - {item.price}" for item in self.items])
